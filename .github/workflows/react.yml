@@ -1,0 +1,46 @@
+name: react
+
+on:
+  pull_request:
+    branches:
+      - 'feature*'
+      - develop
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14.18.2]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Node Version
+        run: node -v
+
+      - name: Yarn Version
+        run: yarn -v
+
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+
+      # 修正箇所が多いのが懸念、コード整形の課題感は少ない為です
+      # - name: Run Prettier
+      #   run: yarn dry-prettier
+
+      # - name: Run ESLint
+      #   run: yarn dry-lint
+
+      - name: Run React Build
+        run: yarn build
+
+      - name: Run React Test
+        run: yarn test
