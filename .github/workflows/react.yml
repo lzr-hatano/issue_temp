@@ -1,6 +1,10 @@
 name: react
 
-on: [pull_request]
+on:
+  pull_request:
+    branches:
+      - 'feature*'
+      - develop
 
 jobs:
   build:
