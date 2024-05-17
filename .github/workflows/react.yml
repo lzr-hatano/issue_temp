@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: yarn --frozen-lockfile
 
-      # 修正箇所が多いのが懸念、コード整形の課題感は少ない為
+      # 修正箇所が多いのが懸念、コード整形の課題感は少ない為です
       # - name: Run Prettier
       #   run: yarn dry-prettier
 
